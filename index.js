@@ -20,8 +20,8 @@ import { films } from "./films.js"
 
 const fragment = document.createDocumentFragment();
 const template = document.querySelector('.template');
-const clone = template.content.cloneNode(true);
 
+// const id = template.content.querySelector('.id');
 const main = document.querySelector('.main');
 const title = template.content.querySelector('.title');
 const img = template.content.querySelector('.img');
@@ -29,7 +29,14 @@ const year = template.content.querySelector('.year');
 const starring = template.content.querySelector('.starring');
 const director = template.content.querySelector('.director');
 
+films.forEach((film) => {
+  title.textContent = film.title;
+  img.src = film.img;
+  year.textContent = film.year;
+  starring.textContent += film.starring;
+  director.textContent += film.directedBy;
+  const clone = template.cloneNode(true);
+  fragment.append(clone.content);
+})
 
-
-fragment.append(clone.content);
 main.append(fragment);
