@@ -1,4 +1,4 @@
-export let movies = [
+export const movies = [
   {
     id: 1,
     title: "Glass Onion: A Knives Out Mystery",

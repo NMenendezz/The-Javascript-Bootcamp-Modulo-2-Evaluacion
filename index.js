@@ -4,27 +4,25 @@ Nos han encargado un top de películas actuales (o al menos eso dicen) para una 
 
 La aplicación debe permitir como mínimo:
 ◻️ Mostrar un listado de películas ✅
-◻️ Añadir una película
+◻️ Añadir una película ✅
 ◻️ Buscar una película por título
 ◻️ Al hacer click en una película se redigirá a la página de la película en Rotten Tomatoes ✅
 
 Hay un par de bonus que puedes hacer:
 ◻️ Añadir un botón para marcar una película como favorita y que se muestre con un color diferente
-◻️ Que al recargar la página se mantengan las películas añadidas y las favoritas
+◻️ Que al recargar la página se mantengan las películas añadidas y las favoritas ✅
  */
-
-// import { movies } from "./movies.js";
-// localStorage.pelis = JSON.stringify(movies)
-// const peliculas = JSON.parse(localStorage.pelis);
 
 import { movies } from "./movies.js"
 
+
+/***************** Selectores *****************/
+
 const fragment = document.createDocumentFragment();
 const template = document.querySelector(".template");
-
-// Mostrar listado de todas las películas
 const main = document.querySelector(".main");
 
+// Selectores del template
 const url = template.content.querySelector(".url");
 const title = template.content.querySelector(".title");
 const img = template.content.querySelector(".img");
@@ -32,6 +30,19 @@ const year = template.content.querySelector(".year");
 const starring = template.content.querySelector(".starring");
 const director = template.content.querySelector(".director");
 
+// Selectores de los elementos del formulario
+const fTitle = document.querySelector("#fTitle");
+const fImg = document.querySelector("#fImg");
+const fUrl = document.querySelector("#fUrl");
+const fYear = document.querySelector("#fYear");
+const fStarring = document.querySelector("#fStarring");
+const fDirector = document.querySelector("#fDirector");
+const submitBtn = document.querySelector(".f-submit-btn");
+
+
+/***************** Funciones *****************/
+
+// Función mostrar todas las películas
 const displayMovies = () => {
   movies.forEach((movie) => {
     url.setAttribute("href", movie.url);
@@ -46,7 +57,7 @@ const displayMovies = () => {
   main.append(fragment);
 };
 
-// Recuperar datos de localStorage y mostrar los datos
+// Recuperar datos de localStorage (si los hay) y ejecutar la función displayMovies()
 if (localStorage.getItem("newMovies") !== null) {
   const newMovies = JSON.parse(localStorage.newMovies);
   for (let i = 0; i < newMovies.length; i++) {
@@ -57,15 +68,19 @@ if (localStorage.getItem("newMovies") !== null) {
   displayMovies();
 }
 
-// Elementos del formulario
-const fTitle = document.querySelector("#fTitle");
-const fImg = document.querySelector("#fImg");
-const fUrl = document.querySelector("#fUrl");
-const fYear = document.querySelector("#fYear");
-const fStarring = document.querySelector("#fStarring");
-const fDirector = document.querySelector("#fDirector");
-const submitBtn = document.querySelector(".f-submit-btn");
 
+/***************** Gestión de eventos *****************/
+
+// No permite guardar una película nueva si no tiene al menos un título
+fTitle.addEventListener('input', () => {
+  if (fTitle.value.length !== 0) {
+    submitBtn.disabled = false
+  } else {
+    submitBtn.disabled = true;
+  }
+})
+
+// Guardar una nueva película y añadirla al localStorage
 submitBtn.addEventListener("click", (e) => {
   e.preventDefault;
   const movie = {
@@ -77,6 +92,7 @@ submitBtn.addEventListener("click", (e) => {
     starring: [fStarring.value],
     directedBy: [fDirector.value],
   };
+
   movies.push(movie);
 
   let newMovies = JSON.parse(localStorage.getItem("newMovies"));
