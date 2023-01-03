@@ -11,14 +11,39 @@
   <body>
     <header class="header">
       <h1 class="title">Listado de películas</h1>
-      <button class="add-film-btn">Añadir película</button>
+      <form action="">
+        <fieldset>
+          <legend>Añadir película</legend>
+          <label for="fTitle">Título</label>
+          <input type="text" id="fTitle"/>
+
+          <label for="fUrl">Dirección url</label>
+          <input type="text" id="fUrl"/>
+
+          <label for="fImg">Link img</label>
+          <input type="text" id="fImg"/>
+
+          <label for="fYear">Año</label>
+          <input type="text" id="fYear" />
+
+          <label for="fStarring">Protagonizada por: </label>
+          <input type="text" id="fStarring"/>
+
+          <label for="fDirector">Dirigida por: </label>
+          <input type="text" id="fDirector"/>
+
+          <button type="submit" class="f-submit-btn">Aceptar</button>
+          <button type="reset" class="f-reset-btn">Limpiar</button>
+        </fieldset>
+      </form>
+      
       <div class="search">
         <span class="search-icon"></span>
         <input class="search-input" type="text" placeholder="Buscar película" />
         <button class="search-btn">Buscar</button>
       </div>
     </header>
-    
+
     <main class="main"></main>
 
     <template class="template">
@@ -27,8 +52,8 @@
           <h2 class="title"></h2>
           <img class="img" />
           <span class="year"></span>
-          <p class="starring"><span>Protagonizada por: </span></p>
-          <p class="director"><span>Dirigida por: </span></p>
+          <p><span>Protagonizada por: </span><span class="starring"></span></p>
+          <p><span>Dirigida por: </span><span class="director"></span></p>
         </div>
       </a>
     </template>

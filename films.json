@@ -1,4 +1,4 @@
-export const films = [
+[
   {
     "id": 1,
     "title": "Glass Onion: A Knives Out Mystery",
