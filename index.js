@@ -39,6 +39,10 @@ const fStarring = document.querySelector("#fStarring");
 const fDirector = document.querySelector("#fDirector");
 const submitBtn = document.querySelector(".f-submit-btn");
 
+// Selectores del buscador
+const search = document.querySelector('.search-input')
+const searchBtn = document.querySelector('.search-btn')
+
 
 /***************** Funciones *****************/
 
@@ -68,6 +72,28 @@ if (localStorage.getItem("newMovies") !== null) {
   displayMovies();
 }
 
+// Función de buscar película
+const searchMovie = (title) => {
+  title = title.toLowerCase();
+  for (let i = 0; i < movies.length; i++) {
+    movies[i].title = movies[i].title.toLowerCase();
+    if (movies[i].title.includes(title)) {
+      return movies[i];
+    }
+  }
+  return null;
+}
+
+// Busca la película y la muestra en el DOM
+searchBtn.addEventListener('click', () => {
+  console.log(searchMovie(search.value));
+  const title = search.value
+  if (searchMovie(title) !== null) {
+    console.log('ok')
+  } else {
+    console.log('no ok')
+  }
+});
 
 /***************** Gestión de eventos *****************/
 
