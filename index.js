@@ -13,14 +13,14 @@ Hay un par de bonus que puedes hacer:
 ◻️ Que al recargar la página se mantengan las películas añadidas y las favoritas ✅
  */
 
-import { movies } from "./movies.js"
-
+import { movies } from "./movies.js";
 
 /***************** Selectores *****************/
 
 const fragment = document.createDocumentFragment();
 const template = document.querySelector(".template");
 const main = document.querySelector(".main");
+const card = document.querySelectorAll(".card");
 
 // Selectores del template
 const url = template.content.querySelector(".url");
@@ -40,9 +40,8 @@ const fDirector = document.querySelector("#fDirector");
 const submitBtn = document.querySelector(".f-submit-btn");
 
 // Selectores del buscador
-const search = document.querySelector('.search-input')
-const searchBtn = document.querySelector('.search-btn')
-
+const search = document.querySelector(".search-input");
+const searchBtn = document.querySelector(".search-btn");
 
 /***************** Funciones *****************/
 
@@ -82,29 +81,19 @@ const searchMovie = (title) => {
     }
   }
   return null;
-}
+};
 
-// Busca la película y la muestra en el DOM
-searchBtn.addEventListener('click', () => {
-  console.log(searchMovie(search.value));
-  const title = search.value
-  if (searchMovie(title) !== null) {
-    console.log('ok')
-  } else {
-    console.log('no ok')
-  }
-});
 
 /***************** Gestión de eventos *****************/
 
 // No permite guardar una película nueva si no tiene al menos un título
-fTitle.addEventListener('input', () => {
+fTitle.addEventListener("input", () => {
   if (fTitle.value.length !== 0) {
-    submitBtn.disabled = false
+    submitBtn.disabled = false;
   } else {
     submitBtn.disabled = true;
   }
-})
+});
 
 // Guardar una nueva película y añadirla al localStorage
 submitBtn.addEventListener("click", (e) => {
@@ -118,13 +107,40 @@ submitBtn.addEventListener("click", (e) => {
     starring: [fStarring.value],
     directedBy: [fDirector.value],
   };
-
+  
   movies.push(movie);
-
+  
   let newMovies = JSON.parse(localStorage.getItem("newMovies"));
   if (newMovies === null) {
     newMovies = [];
   }
   newMovies.push(movie);
   localStorage.newMovies = JSON.stringify(newMovies);
+});
+
+// Busca la película y la muestra en el DOM
+searchBtn.addEventListener("click", () => {
+  console.log(searchMovie(search.value));
+  const searchValue = search.value;
+  if (searchMovie(searchValue) !== null) {
+    main.innerHTML = "";
+    const movies = [searchMovie(searchValue)];
+    movies.forEach((movie) => {
+      url.setAttribute("href", movie.url);
+      title.textContent = movie.title;
+      img.src = movie.img;
+      year.textContent = movie.year;
+      starring.textContent = movie.starring.join(", ");
+      director.textContent = movie.directedBy.join(", ");
+      const clone = template.cloneNode(true);
+      fragment.append(clone.content);
+      main.append(fragment);
+    });
+  } else {
+    console.log("No se ha encontrado ninguna coincidencia");
+    const span = document.createElement("span");
+    span.textContent = "No se ha encontrado ninguna coincidencia";
+    main.before(span)
+  }
+  search.value = "";
 });
