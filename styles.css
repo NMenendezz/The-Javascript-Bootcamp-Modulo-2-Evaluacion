@@ -55,8 +55,10 @@ h1 {
 }
 
 .form fieldset {
+  background-color: var(--card-bg-color);
   border: none;
-  padding: 1em 0.9em 0.2em;
+  border-radius: .2em;
+  padding: 1em 1em 0.2em;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
