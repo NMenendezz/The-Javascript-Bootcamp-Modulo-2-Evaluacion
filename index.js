@@ -5,7 +5,7 @@ Nos han encargado un top de películas actuales (o al menos eso dicen) para una 
 La aplicación debe permitir como mínimo:
 ◻️ Mostrar un listado de películas ✅
 ◻️ Añadir una película ✅
-◻️ Buscar una película por título
+◻️ Buscar una película por título ✅
 ◻️ Al hacer click en una película se redigirá a la página de la película en Rotten Tomatoes ✅
 
 Hay un par de bonus que puedes hacer:
@@ -20,7 +20,6 @@ import { movies } from "./movies.js";
 const fragment = document.createDocumentFragment();
 const template = document.querySelector(".template");
 const main = document.querySelector(".main");
-const card = document.querySelectorAll(".card");
 
 // Selectores del template
 const url = template.content.querySelector(".url");
@@ -30,7 +29,9 @@ const year = template.content.querySelector(".year");
 const starring = template.content.querySelector(".starring");
 const director = template.content.querySelector(".director");
 
-// Selectores de los elementos del formulario
+// Selectores del formulario
+const addMovie = document.querySelector(".add-movie");
+const container = document.querySelector(".form-container");
 const fTitle = document.querySelector("#fTitle");
 const fImg = document.querySelector("#fImg");
 const fUrl = document.querySelector("#fUrl");
@@ -83,8 +84,14 @@ const searchMovie = (title) => {
   return null;
 };
 
-
 /***************** Gestión de eventos *****************/
+
+// Mostar formulario
+addMovie.addEventListener("click", () => {
+  if ((container.style.display = "none")) {
+    container.style.display = "block";
+  }
+});
 
 // No permite guardar una película nueva si no tiene al menos un título
 fTitle.addEventListener("input", () => {
@@ -107,9 +114,9 @@ submitBtn.addEventListener("click", (e) => {
     starring: [fStarring.value],
     directedBy: [fDirector.value],
   };
-  
+
   movies.push(movie);
-  
+
   let newMovies = JSON.parse(localStorage.getItem("newMovies"));
   if (newMovies === null) {
     newMovies = [];
@@ -140,7 +147,7 @@ searchBtn.addEventListener("click", () => {
     console.log("No se ha encontrado ninguna coincidencia");
     const span = document.createElement("span");
     span.textContent = "No se ha encontrado ninguna coincidencia";
-    main.before(span)
+    main.before(span);
   }
   search.value = "";
 });
