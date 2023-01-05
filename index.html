@@ -5,34 +5,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Arapey&family=Hind+Guntur:wght@400;700&display=swap" rel="stylesheet">
+    <style> @import url('https://fonts.googleapis.com/css2?family=Arapey&family=Hind+Guntur:wght@400;700&display=swap'); </style>
     <script defer src="index.js" type="module"></script>
     <title>Evaluación Módulo 2</title>
   </head>
   <body>
     <header class="header">
       <h1 class="title">Listado de películas</h1>
-      <button class="add-movie">Añadir película</button>
-      <div class="form-container">
+
+      <div class="btn-container">
+        <button class="add-movie">Añadir película</button>
+        <div class="search">
+          <input
+            class="search-input"
+            id="search-input"
+            type="text"
+            placeholder="Buscar película"
+          />
+          <label for="search-input"><button class="search-btn">Buscar</button></label>
+        </div>
+      </div>
+
+      <div class="form-container hide">
         <form class="form">
           <fieldset>
-            <label for="fTitle">Título</label>
-            <input type="text" id="fTitle" />
-
-            <label for="fUrl">Dirección url</label>
-            <input type="text" id="fUrl" />
-
-            <label for="fImg">Link img</label>
-            <input type="text" id="fImg" />
-
-            <label for="fYear">Año</label>
-            <input type="text" id="fYear" />
-
-            <label for="fStarring">Protagonizada por: </label>
-            <input type="text" id="fStarring" />
-
-            <label for="fDirector">Dirigida por: </label>
-            <input type="text" id="fDirector" />
-            <div class="container">
+            <div class="input-container">
+              <label for="fTitle">Título</label>
+              <input type="text" id="fTitle" />
+            </div>
+            <div class="input-container">
+              <label for="fUrl">Link a rottentomatoes</label>
+              <input type="text" id="fUrl" />
+            </div>
+            <div class="input-container">
+              <label for="fImg">Link imagen</label>
+              <input type="text" id="fImg" />
+            </div>
+            <div class="input-container">
+              <label for="fYear">Año</label>
+              <input type="text" id="fYear" />
+            </div>
+            <div class="input-container">
+              <label for="fStarring">Protagonizada por: </label>
+              <input type="text" id="fStarring" />
+            </div>
+            <div class="input-container">
+              <label for="fDirector">Dirigida por: </label>
+              <input type="text" id="fDirector" />
+            </div>
+            <div class="form-btn-container">
               <button type="submit" class="f-submit-btn" disabled>
                 Aceptar
               </button>
@@ -40,11 +62,6 @@
             </div>
           </fieldset>
         </form>
-      </div>
-
-      <div class="search">
-        <input class="search-input" type="text" placeholder="Buscar película" />
-        <button class="search-btn">Buscar</button>
       </div>
     </header>
 

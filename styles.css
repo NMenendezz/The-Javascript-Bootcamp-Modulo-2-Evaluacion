@@ -2,6 +2,7 @@
   --body-bg-color: #f2d7d9;
   --card-bg-color: #d3cedf;
   --bg-color: #748da6;
+  --border-color: #645caa;
 }
 
 body {
@@ -9,9 +10,11 @@ body {
   padding: 0;
   box-sizing: border-box;
   background: var(--body-bg-color);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Hind Guntur', sans-serif;
   max-width: 100vw;
 }
+
+/* Header */
 
 header {
   background-color: var(--bg-color);
@@ -20,10 +23,34 @@ header {
 
 h1 {
   text-align: center;
+  font-family: 'Arapey', serif;
+  font-weight: 700;
   font-size: 2.5rem;
 }
 
-.form-container {
+/* Añadir película */
+
+.add-movie {
+  border: none;
+  background-color: #645caa;
+  color: white;
+  border-radius: 0.2em;
+  width: fit-content;
+  margin: 0.8em;
+  padding: 0.5em 1em;
+  transition: scale 0.2s;
+}
+
+.add-movie:hover {
+  cursor: pointer;
+  scale: 105%;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
   display: none;
 }
 
@@ -35,21 +62,34 @@ h1 {
   flex-wrap: nowrap;
 }
 
-.form legend {
-  font-size: 1.5rem;
+.input-container {
+  margin-bottom: 1em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  font-size: 1.1rem;
 }
 
 .form label {
   display: inline-block;
-  width: 20%;
-  min-width: fit-content;
+  flex: 1 1 auto;
 }
 
 .form input {
-  margin: 0.1em 1em 0.8em;
+  background-color: inherit;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  flex: 3 1 auto;
+  max-width: 60%;
 }
 
-.container {
+.form input:focus {
+  outline: none;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.form-btn-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -64,17 +104,16 @@ h1 {
   transition: scale 0.2s;
 }
 
+button:hover {
+  cursor: pointer;
+  scale: 105%;
+}
+
 .form button:disabled {
   border: none;
   background-color: #929295;
   color: #707072;
   cursor: default;
-  scale: 100%;
-}
-
-.form button:hover {
-  cursor: pointer;
-  scale: 105%;
 }
 
 .form button:hover:disabled {
@@ -91,6 +130,39 @@ h1 {
 .f-reset-btn {
   background-color: inherit;
 }
+
+/* Buscar película */
+
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-input {
+  background-color: var(--card-bg-color);
+  width: fit-content;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: .2em;
+}
+
+.search-input:focus {
+  outline: none;
+  border: 2px solid var(--border-color);
+}
+
+.search-btn {
+  background-color: inherit;
+  border: 1px solid #645caa;
+  border-radius: 0.2em;
+  width: fit-content;
+  margin: 0.8em 0.8em 0.8em 0em;
+  padding: 0.5em 1em;
+  transition: scale 0.2s;
+}
+
+/* main */
 
 main {
   max-width: 100vw;
@@ -124,6 +196,7 @@ main {
   padding: 0;
   height: 3em;
   text-align: center;
+  line-height: 2rem;
 }
 
 .img-container {

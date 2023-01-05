@@ -88,9 +88,15 @@ const searchMovie = (title) => {
 
 // Mostar formulario
 addMovie.addEventListener("click", () => {
-  if ((container.style.display = "none")) {
-    container.style.display = "block";
-  }
+  if(container.classList.contains('show')){
+    addMovie.textContent = 'Añadir película';
+    container.classList.remove('show')
+    container.classList.add('hide')
+  } else if (container.classList.contains('hide')) {
+    addMovie.textContent = 'Cerrar';
+    container.classList.remove('hide')
+    container.classList.add('show')
+  };
 });
 
 // No permite guardar una película nueva si no tiene al menos un título
@@ -143,7 +149,7 @@ searchBtn.addEventListener("click", () => {
       fragment.append(clone.content);
       main.append(fragment);
     });
-  } else {
+  } else if (searchMovie(searchValue) === ' ') {
     console.log("No se ha encontrado ninguna coincidencia");
     const span = document.createElement("span");
     span.textContent = "No se ha encontrado ninguna coincidencia";
