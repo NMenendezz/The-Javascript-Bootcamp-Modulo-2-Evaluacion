@@ -32,7 +32,6 @@ Esto nos abrirá una nueva ventana con los datos completos de la película en el
 - En el formulario de añadir una película:
   * Si introducimos un espacio en blanco en el título de la película, habilitará el botón de aceptar, permitiendo su envío y añadiéndo una película sin título a la lista.
   * No existe validación de los datos, como en los campos de año, url o link.
-- Al buscar una película, muestra el título en letras minúsculas.
 
 ## Things To Do
 - Incluir un botón para marcar una película como favorita y que se muestre con un color diferente.
